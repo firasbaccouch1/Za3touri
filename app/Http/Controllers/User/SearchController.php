@@ -17,7 +17,10 @@ class SearchController extends Controller
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
-     }])->with('review')->Active()->ApiSelection()->paginate(10);
+     }])->with('review')->Active()->ApiSelection()->
+     with(['discount' => function($q){
+        $q->Active();
+    }])->paginate(10);
      $api=ProductResource::collection($product)->response()->getData();
     return Api_response('success',200,$api);
     }

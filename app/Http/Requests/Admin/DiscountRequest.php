@@ -25,10 +25,19 @@ class DiscountRequest extends FormRequest
     public function rules()
     {
         return [
-            'category'=> 'required_without:product|exists:categories,id',
-            'product'=> 'required_without:category|exists:products,id',
+            'category'=> 'required_without:product|exists:categories,id|unique:discounts,category_id,'.$this->id.',id',
+            'product'=> 'required_without:category|exists:products,id|unique:discounts,product_id,'.$this->id.',id',
             'expiry_date'=> 'required|date|after:tomorrow',
             'discount'=>'required|numeric|max:100|min:1',
         ];
+    }
+    public function messages()
+    {
+        return [
+        'category.unique' => 'The category already has discount',
+       'product.unique' => 'The product already has discount',
+        ];
+
+       
     }
 }

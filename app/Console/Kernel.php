@@ -2,12 +2,16 @@
 
 namespace App\Console;
 
+use App\Console\Commands\RemoveOrdersUnpaidEvery3Days;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Artisan;
 
 class Kernel extends ConsoleKernel
 {
+    protected $commands = [
+        Commands\RemoveOrdersUnpaidEvery3Days::class,
+    ];
     /**
      * Define the application's command schedule.
      *
@@ -16,7 +20,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+         $schedule->command('remove:unpiadOrders')->daily();
     }
 
     /**

@@ -88,7 +88,7 @@ class OrdersController extends Controller
        
                
             $request->validate([
-                'note' => 'text|max:500|min:10|nullable'
+                'note' => 'max:500|min:10|nullable'
                 
             ]);
             $CartData = $this->getCart();

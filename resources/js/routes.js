@@ -94,7 +94,7 @@ let ReturnsCancellations = require('./components/Frontend/User/MyReturns/MyRetur
     //cart
     { path: '/Cart',component:Cart,name:'Cart',meta:{title:`Cart`,middleware:'auth'}},
     //checkout
-    { path: '/Checkout',component:Checkout,name:'Checkout', meta:{title:`Checkout`}},
+    { path: '/Checkout',component:Checkout,name:'Checkout', meta:{title:`Checkout`,middleware:'auth'}},
     //search
     { path: '/Search/:name',component:Search,name:'Search',props:true, meta:{title:`Search`}},
     // 404

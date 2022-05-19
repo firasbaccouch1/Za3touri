@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\RegisterRequest;
 use App\Models\Users\User;
+use App\Trait\CartTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class AuthController extends Controller
 {
+    use CartTrait;
     public function login(Request $request){
     try {
         $credentials = [
@@ -68,6 +70,17 @@ class AuthController extends Controller
           }])->first();
             return Api_response(null,200,$user);
   
+    }
+    public function userwithCart(){
+        $user_id = Auth::id();
+         $user= User::where('id',$user_id)->withCount(['wishlist','order','order as cancel_orders_count' => function (Builder $query) {
+            $query->where('status', 'cancel');
+          }])->first();
+          $Api= [
+              'user' => $user,
+            'Cart' =>  $this->getCart(),
+        ];
+        return Api_response('success',200,$Api);
     }
     public function SocialiteLogin($provider){
         $drive = ['google','facebook'];

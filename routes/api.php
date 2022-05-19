@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Route;
         Route::group(['middleware' => 'auth:sanctum'],function(){
             Route::get('/logout',[AuthController::class,'logout']);
             Route::get('/user',[AuthController::class,'user']);
+            Route::get('/userwithCart',[AuthController::class,'userwithCart']);
 
             //Cart
             Route::get('/CartComponent',[CartController::class,'index']);

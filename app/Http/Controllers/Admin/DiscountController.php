@@ -5,24 +5,28 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\DiscountsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DiscountRequest;
+use App\Http\Services\DiscountCheckingData;
 use App\Http\Services\EmailMeWhenPriceDrop;
 use App\Models\Admin\Category;
 use App\Models\Admin\Discount;
 use App\Models\Admin\Product;
+use App\Scopes\DiscountScope;
 use Carbon\Carbon;
 
 class DiscountController extends Controller
 {
     
-
+    private $checkingdata;
     private $EmailMeWhenPriceDrop;
-    public function __construct(EmailMeWhenPriceDrop $EmailMeWhenPriceDrop)
+    public function __construct(EmailMeWhenPriceDrop $EmailMeWhenPriceDrop,DiscountCheckingData $checkingdata)
     {  
         $this->middleware(['adminpermission:guest'])->only('index');
         $this->middleware(['adminpermission:create'])->only('create','store');
         $this->middleware(['adminpermission:update'])->only('update','edit','active');
         $this->middleware(['adminpermission:delete'])->only('destroy');
         $this->EmailMeWhenPriceDrop =$EmailMeWhenPriceDrop;
+        $this->checkingdata=$checkingdata;
+
     }
     /**
      * Display a listing of the resource.
@@ -58,7 +62,10 @@ class DiscountController extends Controller
               if ($request->counter) {
                  $counter = 1;
               }
-
+            $result=  $this->checkingdata->CheckingDiscount($request);
+              if($result == false){
+                return redirect()->back()->with(notify_messages('Can\'t discount product or category that has discount','error'));
+              } 
             if ($request->category == null) {
                 Discount::insert([
                     'discount'=>$request->discount,
@@ -185,8 +192,6 @@ class DiscountController extends Controller
                             
 
                          }
-
-                
                     notfication_helper('Discount Number'.$id.'Activated By');
                     return redirect()->back()->with(notify_messages('discount is Active','success'));
                 }

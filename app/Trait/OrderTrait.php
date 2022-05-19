@@ -32,7 +32,7 @@ Trait OrderTrait{
                 "street_address"=> $defualt->street_address,
             ];
         }else{
-           $country = Countries::where('id',$request->country_id)->first();
+           $country = Countries::where('id',$request->country)->first();
             $address =  [
                 'country' => $country,
                 "first_name"=> $request->first_name,

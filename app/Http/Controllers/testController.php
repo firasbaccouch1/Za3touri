@@ -8,6 +8,7 @@ use App\Http\Resources\EmailMeResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\testresource;
 use App\Http\Resources\WishlistResource;
+use App\Http\Services\PaymentServices;
 use App\Mail\ResetEmail;
 use App\Models\Admin\Category;
 use App\Models\Admin\Coupon;
@@ -31,23 +32,28 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class testController extends Controller
 {
-    use EmailMeTrait;
+    use OrderTrait;
+    use CartTrait;
+    private $PaymentServices;
+    public function __construct(PaymentServices $PaymentServices)
+    {
+        $this->PaymentServices = $PaymentServices;
+    }
     public function test(){ 
-        $product = Product::where('id',8)->whereHas('emailme')->with('discount')->first();
-        if ($product) {
-            $data =$this->preparingEmailData($product->slug);
-            if ($data != null) {
-                foreach ($data['users'] as $index => $value) {
-                    $filtreddata=$data;
-                    $filtreddata['users']=$filtreddata['users'][$index]; 
-                    
-                }
-
-            }  
+       $category = Category::where('id',3)->whereDoesntHave('discount')->first();
+        $prodcut = Category::where('id',3)->with('product',function($q){
+            $q->whereHas('discount');
+        })->first();
+        if($prodcut->product || !$category){
+            return null;
         }
+        return $prodcut;
+   
+      
     
 
 }

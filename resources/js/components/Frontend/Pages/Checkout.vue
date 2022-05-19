@@ -396,6 +396,8 @@ export default {
                 
         },changecountry(event){
            this.form.country = event.target.value;
+           
+
         },CheckoutComponent(){
             Api.get('/CheckoutComponent').then(res => {
                 this.Countries = res.data.data.countries

@@ -380,10 +380,12 @@ export default {
     },
     created(){
      if (this.$cookies.get('checkauth') == 'true') {
-        Auth.auth().then(res=> {
+        Auth.userwithCart().then(res=> {
         this.$store.commit('SET_AUTHENTICATED',true)
-        this.$store.commit('SET_USER',res.data.data)
-        })   
+        this.$store.commit('SET_USER',res.data.data.user)
+        this.$store.commit('SET_CART',res.data.data.Cart)
+        
+        }) 
      }
     
     },
@@ -400,7 +402,7 @@ export default {
       this.HeaderComponent();
     },watch:{
         checkstate(value){
-            if (value == true) {
+            if (value == 'true') {
                 this.CartComponent();
             }else{
             this.cart.Cart_data = []

@@ -12,7 +12,9 @@ class CategoryComponentController extends Controller
 {
    public function index(Request $request ,$slug){
       $category =  Category::where('slug',$slug)->Active()->ApiSelection()->first();
-      $product = Product::where('category_id',$category->id)->Active()->ApiSelection()->
+      $product = Product::with(['discount'=> function($q){
+         $q->Active()->ApiSelection();
+     }])->where('category_id',$category->id)->Active()->ApiSelection()->
       with(['category'=>function($q){
          $q->with('discount',function($q){
             $q->Active()->ApiSelection();

@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 class FilterProductsComponentController extends Controller
 {
  public function index(){
-     $product = Product::with(['category' => function($q){
+     $product = Product::with(['discount'=> function($q){
+        $q->Active()->ApiSelection();
+    }])->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
@@ -32,14 +34,18 @@ class FilterProductsComponentController extends Controller
     if (!$Categoryid) {
     if (in_array($number,$numbers)) {
          if ($show =='Newest') {
-         $product = Product::with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
      }])->with('review')->Active()->ApiSelection()->orderBy('id', 'DESC')->paginate($number);
      }
     if($show == 'Latest'){
-         $product = Product::with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
@@ -47,14 +53,18 @@ class FilterProductsComponentController extends Controller
      }
     
     if($show == 'LowestPrice'){
-         $product = Product::with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
      }])->with('review')->Active()->ApiSelection()->orderBy('price', 'ASC')->paginate($number);
     }
     if($show == 'HighestPrice'){
-         $product = Product::with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
@@ -69,14 +79,18 @@ class FilterProductsComponentController extends Controller
  }if ($Categoryid) {
      if (in_array($number,$numbers)) {
          if ($show =='Newest') {
-         $product = Product::where('category_id',$Categoryid->id)->with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->where('category_id',$Categoryid->id)->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
      }])->Active()->ApiSelection()->orderBy('id', 'DESC')->paginate($number);
      }
     if($show == 'Latest'){
-         $product = Product::where('category_id',$Categoryid->id)->with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->where('category_id',$Categoryid->id)->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
@@ -84,14 +98,18 @@ class FilterProductsComponentController extends Controller
      }
     
     if($show == 'LowestPrice'){
-         $product = Product::where('category_id',$Categoryid->id)->with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->where('category_id',$Categoryid->id)->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);
      }])->Active()->ApiSelection()->orderBy('price', 'ASC')->paginate($number);
     }
     if($show == 'HighestPrice'){
-         $product = Product::where('category_id',$Categoryid->id)->with(['category' => function($q){
+         $product = Product::with(['discount'=> function($q){
+            $q->Active()->ApiSelection();
+        }])->where('category_id',$Categoryid->id)->with(['category' => function($q){
             $q->Active()->ApiSelection()->with(['discount'=> function($q){
             $q->Active()->ApiSelection();
         }]);

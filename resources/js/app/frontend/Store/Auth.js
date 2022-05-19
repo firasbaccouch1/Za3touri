@@ -19,6 +19,10 @@ export default {
       auth() {
         return Api.get("/user");
       },
+      async userwithCart() {
+        await Csrf.getCookie();
+        return Api.get("/userwithCart");
+      },
       async SocialiteLogin(){
          await Csrf.getCookie();
         Api.get('/Login/facebook')

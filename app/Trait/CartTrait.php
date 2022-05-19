@@ -26,12 +26,16 @@ Trait CartTrait{
     function getCart(){
             $user_id = Auth::id();
             $cart =   Cart::where('user_id',$user_id)->with('product',function($q){
-                return $q->Active()->ApiSelection()
+                    $q->Active()->ApiSelection()
+                ->with('discount',function($q){
+                        $q->Active()->ApiSelection();
+                })
                 ->with('category',function($q){
-                    return $q->ApiSelection()->Active();
-                })->with('discount',function($q){
-                   return $q->Active()->ApiSelection();
-            });
+                     $q->ApiSelection()->Active()
+                     ->with('discount',function($q){
+                        $q->Active()->ApiSelection();
+                });
+                });
            })->get();
            $Subtotal = 0;
            $newCart = CartResource::collection($cart->where('product','!=',null))->response()->getData();

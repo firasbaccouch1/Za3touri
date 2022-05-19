@@ -21,7 +21,7 @@
                             <br>
                           </div>
                         </div>
-
+                        <input type="hidden" name="id" value="{{ $discount->id }}">
                         <div class="form-group row text-center justify-content-center">
                           <div class="col-lg-8 ">
                             <span class="color-gray">expiry date </span>

@@ -210,11 +210,6 @@ export default {
         return {
         
         }
-    },created(){
-        // if (this.$store.state.authenticated == false) {
-        //    this.$router.push({ name: "Home"})
-        //    }
-
     },computed: { 
             ...mapGetters({
         cart: 'cart',

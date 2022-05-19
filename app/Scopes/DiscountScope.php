@@ -18,5 +18,6 @@ class DiscountScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $builder->where('expired_at','>',Carbon::now());
+       
     }
 }
