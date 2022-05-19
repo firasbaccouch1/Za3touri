@@ -92,13 +92,14 @@ You can also contact me via Facebook or the linkedin which you can find below</p
 
                                                 <li>
 
-                                                    <a href='https://www.facebook.com/firas.baccouch.90/' class="s-fb--bgcolor-hover" ><i class="fab fa-facebook-f"></i></a></li>
+                                                    <a  target=”_blank” href='https://www.facebook.com/firas.baccouch.90/' class="s-fb--bgcolor-hover" ><i class="fab fa-facebook-f"></i></a></li>
                                                 <li>
 
-                                                    <a href="https://www.instagram.com/firas_bbh/" class="s-insta--bgcolor-hover" ><i class="fab fa-instagram"></i></a></li>
+                                                    <a  target=”_blank” href="https://www.instagram.com/firas_bbh/" class="s-insta--bgcolor-hover" ><i class="fab fa-instagram"></i></a></li>
                                                 <li>
 
-                                                    <a href="https://www.linkedin.com/in/firas-baccouch-12429323a/" class="s-linked--bgcolor-hover" ><i class="fab fa-linkedin"></i></a></li>
+                                                    <a  target=”_blank” href="https://www.linkedin.com/in/firas-baccouch-12429323a/" class="s-linked--bgcolor-hover" ><i class="fab fa-linkedin"></i></a></li>
+                                                   
                                             </ul>
                                         </div>
                                     </div>

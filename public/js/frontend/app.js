@@ -6592,6 +6592,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -66462,7 +66463,10 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "s-fb--bgcolor-hover",
-              attrs: { href: "https://www.facebook.com/firas.baccouch.90/" },
+              attrs: {
+                target: "”_blank”",
+                href: "https://www.facebook.com/firas.baccouch.90/",
+              },
             },
             [_c("i", { staticClass: "fab fa-facebook-f" })]
           ),
@@ -66473,7 +66477,10 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "s-insta--bgcolor-hover",
-              attrs: { href: "https://www.instagram.com/firas_bbh/" },
+              attrs: {
+                target: "”_blank”",
+                href: "https://www.instagram.com/firas_bbh/",
+              },
             },
             [_c("i", { staticClass: "fab fa-instagram" })]
           ),
@@ -66485,6 +66492,7 @@ var staticRenderFns = [
             {
               staticClass: "s-linked--bgcolor-hover",
               attrs: {
+                target: "”_blank”",
                 href: "https://www.linkedin.com/in/firas-baccouch-12429323a/",
               },
             },

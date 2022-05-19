@@ -38,6 +38,18 @@
             <br><br>
             <div class="row">
                 <div class="col-lg-6 u-s-m-b-30">
+                    <h2 class=" u-s-m-b-8" >Shipping</h2>
+                    <span class="badge badge-pill badge-primary">${{ $GeneralSetting->shipping  }}</span>
+                </div>
+                <div class="col-lg-6 u-s-m-b-30">
+                    <h2 class=" u-s-m-b-8">Tax</h2>
+                        <span class="badge badge-pill badge-info">%{{ $GeneralSetting->tax }}</span>
+                </div>
+        
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-lg-6 u-s-m-b-30">
                     <h2 class=" u-s-m-b-8">logo top</h2>
                   <img src="{{ asset($setting->logo_top) }}" style="width: 60px" alt="">
                 </div>

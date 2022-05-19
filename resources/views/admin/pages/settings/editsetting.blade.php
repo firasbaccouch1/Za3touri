@@ -67,6 +67,19 @@
                         </div>
                       </div>
                       <div class="form-group row text-center">
+                         
+                        <div class="col-sm-6 ">
+                          <span>$ - Shipping</span>
+                          <input type="text" name="shipping" value="{{ $GeneralSetting->shipping }}" class="form-control form-control-user"  >
+                          <br>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                          <span>% - Tax</span>
+                          <input type="text" name="tax" value="{{ $GeneralSetting->tax }}" class="form-control form-control-user"  >
+                        </div>
+                      </div>
+                      <div class="form-group row text-center">
                         <div class="col-sm-12">
                           <span>Site Status</span>
                         <select name="status" class="form-control" style="padding: 0.3rem 0.75rem;border-radius: 50px; ">

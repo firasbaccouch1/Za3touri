@@ -34,6 +34,8 @@ class SiteSettingsRequest extends FormRequest
             'logo_top' => 'mimes:'.Photo_Extension(),
             'logo_site' => 'mimes:'.Photo_Extension(),
             'maintenance_photo' => 'mimes:'.Photo_Extension(),
+            'tax' => 'required|numeric|between:1,100',
+            'shipping' => 'required|numeric|between:1,100',
         ];
     }
 }

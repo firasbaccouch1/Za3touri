@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SiteSettingsRequest;
+use App\Models\Admin\GeneralSettings;
 use App\Models\Admin\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -28,7 +29,8 @@ class SettingController extends Controller
     public function index()
     {
      $setting =  Setting::first();
-        return view('admin.pages.settings.setting',compact('setting'));
+     $GeneralSetting = GeneralSettings::first();
+        return view('admin.pages.settings.setting',compact('setting','GeneralSetting'));
     }
 
     /**
@@ -72,7 +74,8 @@ class SettingController extends Controller
     public function edit($id)
     {
         $Settings = Setting::where('id',$id)->first();
-        return view('admin.pages.settings.editsetting',compact('Settings'));
+        $GeneralSetting = GeneralSettings::first();
+        return view('admin.pages.settings.editsetting',compact('Settings','GeneralSetting'));
     }
 
     /**
@@ -115,6 +118,10 @@ class SettingController extends Controller
                     'maintenance_photo' => save_photo_settings($maintenance_photo,$location_maintenance,$request->old_maintenance_photos,'maintenance_photo',[2340,1140])
                 ]);
             }
+            GeneralSettings::first()->update([
+                'tax' => $request->tax,
+                'shipping' => $request->shipping,
+            ]);
             
             return redirect()->route('Settings.index')->with(notify_messages('settings updated Seccessfully','info'));
         } catch (\Throwable $th) {

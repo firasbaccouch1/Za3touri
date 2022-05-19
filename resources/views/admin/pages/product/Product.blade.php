@@ -1,4 +1,5 @@
 @extends('Master_pages.Admin')
+@section('title','Product')
 @section('content')
 <div>
 <link rel="stylesheet" href="{{ asset('frontend/app.css') }}">
