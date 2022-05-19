@@ -252,13 +252,13 @@
                                                                 <td>TAX</td>
                                                                 <td>%{{ cart.Tax }}</td>
                                                             </tr>
-                                                            <tr v-if="activecoupon ==true">
-                                                                <td>Coupon</td>
-                                                                <td>-${{ parseFloat(((cart.Sub_Total*Coupon.discount)/100)).toFixed(0) }}</td>
-                                                            </tr>
                                                             <tr>
                                                                 <td>SUBTOTAL</td>
                                                                 <td>$ {{ parseFloat(cart.Sub_Total).toFixed(0) }}</td>
+                                                            </tr>
+                                                            <tr v-if="activecoupon ==true">
+                                                                <td>Coupon</td>
+                                                                <td>-${{ parseFloat(((cart.Total*Coupon.discount)/100)).toFixed(0) }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>GRAND TOTAL</td>

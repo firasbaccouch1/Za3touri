@@ -44,15 +44,7 @@ class testController extends Controller
         $this->PaymentServices = $PaymentServices;
     }
     public function test(){ 
-       $category = Category::where('id',3)->whereDoesntHave('discount')->first();
-        $prodcut = Category::where('id',3)->with('product',function($q){
-            $q->whereHas('discount');
-        })->first();
-        if($prodcut->product || !$category){
-            return null;
-        }
-        return $prodcut;
-   
+
       
     
 

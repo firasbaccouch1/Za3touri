@@ -56,7 +56,7 @@ class DiscountController extends Controller
      */
     public function store(DiscountRequest $request)
     {
-     
+        try {
      
                 $counter = 0;
               if ($request->counter) {
@@ -85,7 +85,9 @@ class DiscountController extends Controller
                 notfication_helper('Discount Created By',true);
             }
             return redirect()->route('Discount.index')->with(notify_messages('Discount Added Successfully','success'));
-
+        } catch (\Throwable $th) {
+            return  error_on_controller();
+           }
     }
 
     /**
@@ -121,6 +123,10 @@ class DiscountController extends Controller
     public function update(DiscountRequest $request, $id)
     {
        try {
+        $result=  $this->checkingdata->CheckingDiscount($request);
+        if($result == false){
+          return redirect()->back()->with(notify_messages('Can\'t discount product or category that has discount','error'));
+        } 
         if ($request->category == null) {
             Discount::findOrFail($id)->update([
                 'discount'=>$request->discount,

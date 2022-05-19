@@ -68162,25 +68162,6 @@ var render = function () {
                             _c("td", [_vm._v("%" + _vm._s(_vm.cart.Tax))]),
                           ]),
                           _vm._v(" "),
-                          _vm.activecoupon == true
-                            ? _c("tr", [
-                                _c("td", [_vm._v("Coupon")]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    "-$" +
-                                      _vm._s(
-                                        parseFloat(
-                                          (_vm.cart.Sub_Total *
-                                            _vm.Coupon.discount) /
-                                            100
-                                        ).toFixed(0)
-                                      )
-                                  ),
-                                ]),
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
                           _c("tr", [
                             _c("td", [_vm._v("SUBTOTAL")]),
                             _vm._v(" "),
@@ -68193,6 +68174,25 @@ var render = function () {
                               ),
                             ]),
                           ]),
+                          _vm._v(" "),
+                          _vm.activecoupon == true
+                            ? _c("tr", [
+                                _c("td", [_vm._v("Coupon")]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "-$" +
+                                      _vm._s(
+                                        parseFloat(
+                                          (_vm.cart.Total *
+                                            _vm.Coupon.discount) /
+                                            100
+                                        ).toFixed(0)
+                                      )
+                                  ),
+                                ]),
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("tr", [
                             _c("td", [_vm._v("GRAND TOTAL")]),

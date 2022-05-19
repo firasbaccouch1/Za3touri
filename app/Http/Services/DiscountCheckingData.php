@@ -21,11 +21,9 @@ class DiscountCheckingData{
        }
         //checking if category has product discounted if yes return false    
         }else{
-            $category = Category::where('id',3)->whereDoesntHave('discount')->first();
-            $product = Category::where('id',3)->with('product',function($q){
-                $q->whereHas('discount');
-            })->first();
-            if($product->product || !$category){
+            $category = Category::where('id',$request->category)->whereDoesntHave('discount')->first();
+            $product = Product::where('category_id',$request->category)->whereHas('discount')->first();
+            if($product || !$category){
                 return false;
             }else{
                 return true;

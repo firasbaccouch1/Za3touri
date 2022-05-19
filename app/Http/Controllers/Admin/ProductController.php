@@ -60,7 +60,8 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {   
        
-       
+      try{
+
         $image = $request->file('thumbnail');
         $location =  "backend/img/Product/thamnaile/";
         $muti_img = $request->file('images');
@@ -89,7 +90,9 @@ class ProductController extends Controller
         }
         notfication_helper('New Product Added By');
         return redirect()->route("Product.create")->with(notify_messages('Product Created Successfully','success'));
-
+    } catch (\Throwable $th) {
+        return  error_on_controller();
+    }
        }
     
 
@@ -135,7 +138,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, $id)
-    {   
+    {  
+        try{ 
         $oldprice =Product::where('id',$id)->first()->price;
         $location_muti_img = 'backend/img/Product/images/';
         $muti_img= $request->file('images');
@@ -189,7 +193,9 @@ class ProductController extends Controller
         }
          notfication_helper('Product Number'.$id.' Edited By');
         return redirect()->back()->with(notify_messages('Product Updated Successfully','info'));
-
+    } catch (\Throwable $th) {
+        return  error_on_controller();
+    }
     
     
     }
