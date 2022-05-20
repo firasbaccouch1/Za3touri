@@ -108,30 +108,25 @@
         <span>Orders</span>
       </a>
     </li>
-    <li class="nav-item {{ Active_html('Settings.index') }}">
-      <a class="nav-link " href="{{ route('Settings.index') }}">
+    <li class="nav-item {{ Active_html('admin.Users') }}">
+      <a class="nav-link " href="{{ route('admin.Users') }}">
         <i class="fas fa-users"></i>
         <span>Users</span>
       </a>
     </li>
-    <li class="nav-item {{ Active_html('Settings.index') }}">
-      <a class="nav-link " href="{{ route('Settings.index') }}">
+    <li class="nav-item {{ Active_html('admin.Massages') }}">
+      <a class="nav-link " href="{{ route('admin.Massages') }}">
         <i class="fas fa-comment"></i>
         <span>Messages</span>
       </a>
     </li> 
-    <li class="nav-item {{ Active_html('Settings.index') }}">
-      <a class="nav-link " href="{{ route('Settings.index') }}">
+    <li class="nav-item {{ Active_html('admin.Feedback') }}">
+      <a class="nav-link " href="{{ route('admin.Feedback') }}">
         <i class="fas fa-comment-alt"></i>
         <span>Feedbacks</span>
       </a>
     </li>
-    <li class="nav-item {{ Active_html('Settings.index') }}">
-      <a class="nav-link " href="{{ route('Settings.index') }}">
-        <i class="fas fa-dollar-sign"></i>
-        <span>payment</span>
-      </a>
-    </li> 
+
         
 
 

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class AuthController extends Controller
 {
@@ -36,8 +37,8 @@ class AuthController extends Controller
     }
     }
     public function register(RegisterRequest $request){
-            try {
-                $img = 'frontent/images/profile/default/Male.png';
+           
+                $img = 'frontend/images/profile/default/Male.png';
                 if ($request->gender == 'Female') {
                     $img = 'frontent/images/profile/default/Female.png';
                 }
@@ -47,11 +48,11 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'photo' =>  $img,
+                    'ip_address' => request()->ip(),
+
                 ]);
                 return Api_response(__('messages.register'),200);
-            } catch (\Throwable $th) {
-                return Api_response($th,500);
-            }
+
     }
     public function logout(){
         try {
@@ -131,4 +132,6 @@ class AuthController extends Controller
 
 
     }
+
+
 }

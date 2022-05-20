@@ -5675,6 +5675,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Trash',
   created: function created() {
@@ -57683,7 +57685,6 @@ var render = function () {
                   ),
                 ]),
               ]),
-              _vm._m(2),
             ]
           ),
         ]),
@@ -57721,174 +57722,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Deleted AT")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-12 col-md-5" }, [
-        _c(
-          "div",
-          {
-            staticClass: "dataTables_info",
-            attrs: {
-              id: "dataTable_info",
-              role: "status",
-              "aria-live": "polite",
-            },
-          },
-          [_vm._v("Showing 1 to 10 of 57 entries")]
-        ),
-      ]),
-      _c("div", { staticClass: "col-sm-12 col-md-7" }, [
-        _c(
-          "div",
-          {
-            staticClass: "dataTables_paginate paging_simple_numbers",
-            attrs: { id: "dataTable_paginate" },
-          },
-          [
-            _c("ul", { staticClass: "pagination" }, [
-              _c(
-                "li",
-                {
-                  staticClass: "paginate_button page-item previous disabled",
-                  attrs: { id: "dataTable_previous" },
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: {
-                        href: "#",
-                        "aria-controls": "dataTable",
-                        "data-dt-idx": "0",
-                        tabindex: "0",
-                      },
-                    },
-                    [_vm._v("Previous")]
-                  ),
-                ]
-              ),
-              _c("li", { staticClass: "paginate_button page-item active" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: "#",
-                      "aria-controls": "dataTable",
-                      "data-dt-idx": "1",
-                      tabindex: "0",
-                    },
-                  },
-                  [_vm._v("1")]
-                ),
-              ]),
-              _c("li", { staticClass: "paginate_button page-item " }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: "#",
-                      "aria-controls": "dataTable",
-                      "data-dt-idx": "2",
-                      tabindex: "0",
-                    },
-                  },
-                  [_vm._v("2")]
-                ),
-              ]),
-              _c("li", { staticClass: "paginate_button page-item " }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: "#",
-                      "aria-controls": "dataTable",
-                      "data-dt-idx": "3",
-                      tabindex: "0",
-                    },
-                  },
-                  [_vm._v("3")]
-                ),
-              ]),
-              _c("li", { staticClass: "paginate_button page-item " }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: "#",
-                      "aria-controls": "dataTable",
-                      "data-dt-idx": "4",
-                      tabindex: "0",
-                    },
-                  },
-                  [_vm._v("4")]
-                ),
-              ]),
-              _c("li", { staticClass: "paginate_button page-item " }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: "#",
-                      "aria-controls": "dataTable",
-                      "data-dt-idx": "5",
-                      tabindex: "0",
-                    },
-                  },
-                  [_vm._v("5")]
-                ),
-              ]),
-              _c("li", { staticClass: "paginate_button page-item " }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: "#",
-                      "aria-controls": "dataTable",
-                      "data-dt-idx": "6",
-                      tabindex: "0",
-                    },
-                  },
-                  [_vm._v("6")]
-                ),
-              ]),
-              _c(
-                "li",
-                {
-                  staticClass: "paginate_button page-item next",
-                  attrs: { id: "dataTable_next" },
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: {
-                        href: "#",
-                        "aria-controls": "dataTable",
-                        "data-dt-idx": "7",
-                        tabindex: "0",
-                      },
-                    },
-                    [_vm._v("Next")]
-                  ),
-                ]
-              ),
-            ]),
-          ]
-        ),
       ]),
     ])
   },

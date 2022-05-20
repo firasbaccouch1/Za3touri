@@ -98,23 +98,24 @@ use Illuminate\Support\Facades\Route;
         });
 
     //Login - Register
-    Route::post('/login',[AuthController::class,'login']);
-    Route::post('/register',[AuthController::class,'register']);
-    Route::get('/Login/{provider}',[AuthController::class,'SocialiteLogin']);
-    Route::get('/Login/{provider}/callback',[AuthController::class,'SocialiteCallBack']);
-    //component
-    Route::get('/HomeComponent',[HomeComponentController::class,'index']);
-    Route::get('/HeaderComponent',[HeaderComponentController::class,'index']);
-    Route::get('/CategoryComponent/{slug}',[CategoryComponentController::class,'index']);
-    Route::get('/FilterProductsComponent',[FilterProductsComponentController::class,'index']);
-    Route::get('/FilterProducts/{numbers}/{show}/{id}',[FilterProductsComponentController::class,'Filter']);
-    //product by slug
-    Route::get('/Product/{slug}',[ProductController::class,'index']);
-    //profile change email
-    Route::get('/Check-Token/{token}',[ProfileController::class,'checktoken']);
-    Route::post('/Change-Email',[ProfileController::class,'changeemail']);
-    //Search
-    Route::get('/Search/{name}',[SearchController::class,'index']);
+        Route::post('/login',[AuthController::class,'login']);
+        Route::post('/register',[AuthController::class,'register']);
+        Route::get('/Login/{provider}',[AuthController::class,'SocialiteLogin']);
+        Route::get('/Login/{provider}/callback',[AuthController::class,'SocialiteCallBack']);
+        //component
+        Route::get('/HomeComponent',[HomeComponentController::class,'index']);
+        Route::get('/HeaderComponent',[HeaderComponentController::class,'index']);
+        Route::get('/CategoryComponent/{slug}',[CategoryComponentController::class,'index']);
+        Route::get('/FilterProductsComponent',[FilterProductsComponentController::class,'index']);
+        Route::get('/FilterProducts/{numbers}/{show}/{id}',[FilterProductsComponentController::class,'Filter']);
+        //product by slug
+        Route::get('/Product/{slug}',[ProductController::class,'index']);
+        //profile change email
+        Route::get('/Check-Token/{token}',[ProfileController::class,'checktoken']);
+        Route::post('/Change-Email',[ProfileController::class,'changeemail']);
+        //Search
+        Route::get('/Search/{name}',[SearchController::class,'index']);
+
 
 
 

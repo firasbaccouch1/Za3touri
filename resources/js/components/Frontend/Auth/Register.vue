@@ -126,20 +126,23 @@ export default {
         }
     },
     methods:{
-            Gender(e){
-                this.form.gender = e.target.options[e.target.options.selectedIndex].text
-            },
             Register(){
-                Auth.register(this.form).then(res => 
-                 this.$toasted.show(res.data.msg),
-                  this.$router.push({name:'Login'}),
-                ).catch(error => 
-                {this.errors = error.response.data.errors})
-               
-            },
-            LoginWithFacebook(){
-                
+                Auth.register(this.form).then(res => {
+               this.$toasted.show(res.data.msg)
+                this.$router.push({name:'Login'})
+                }).catch(err => {
+                if (err.response.data.errors) {
+                this.errors = err.response.data.errors
+                }else{
+                this.errors = [];
+                    this.$toasted.show(err.response.data.msg,{
+                     type : 'error',
+                    icon : 'exclamation-triangle'
+               }) 
+
             }
+             })
+            },
             
     }
         

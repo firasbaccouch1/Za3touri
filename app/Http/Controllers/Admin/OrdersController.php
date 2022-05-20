@@ -12,6 +12,8 @@ class OrdersController extends Controller
     public function index(OrdersDatatables $datatables){
 
         return $datatables->render('admin.pages.orders.Orders');
+        $this->middleware(['adminpermission:update'])->only('update');
+        $this->middleware(['adminpermission:guest'])->only('index');
     }
     public function update($id,$status){
        $order= Orders::findOrFail($id);

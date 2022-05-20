@@ -12,21 +12,6 @@ let Api = axios.create({
   }
   
 });
-Api.defaults.withCredentials = true;
-// Api.interceptors.request.use(
-// 	(config) => {
-
-//   },);
-//   Api.interceptors.response.use(
-//     (response) => {
-//      if (response) {
-//         // response
-//      }
-//     },	(error) => {
-//       return error;
-//     }
-    
-// );
 
 
 export default Api;

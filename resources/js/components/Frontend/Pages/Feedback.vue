@@ -45,6 +45,8 @@
                                         </div>
                                     </form>
                                 </div>
+                                <br><br>
+                                
                             </div>
                         </div>
                     </div>
@@ -54,8 +56,10 @@
             </div>
 </template>
 <script>
+import carousel from 'vue-owl-carousel'
 import Api from '../../../app/frontend/Api/Api'
 export default {
+    components: { carousel },
     data(){
         return {
             form:{
@@ -64,6 +68,7 @@ export default {
             errors:[],
             limitmaxCount:400,
             totalRemainCount:400,
+            Feedback:[],
         }
     },methods:{
         sendfeedback(){
@@ -93,7 +98,7 @@ export default {
         liveCountDown(){
          this.totalRemainCount = this.limitmaxCount - this.form.message.length;
         }
-    }
+    },
 }
 </script>
 <style scoped>

@@ -12,10 +12,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <router-link :to='{name:"Home"}'>Home</router-link></li>
                                     <li class="is-marked">
 
-                                        <a href="contact.html">Contact</a></li>
+                                        <a >Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -151,9 +151,9 @@ export default {
     },
     methods:{
         GetInTouch(){
-            if(this.$store.state.authenticated == true){
             Api.post('/Message',this.form).then(res=>{
                 this.$toasted.show(res.data.msg)
+                 this.$router.push({name: "Home"})
             }).catch(err => {
             if (err.response.data.errors) {
                 this.errors = err.response.data.errors
@@ -166,12 +166,7 @@ export default {
 
             }
             })
-            }else{
-                 this.$toasted.show('You Need To Login First',{
-                    type : 'warning',
-                    icon : 'smile-beam'
-               }) 
-            }
+            
         },liveCountDown(){
          this.totalRemainCount = this.limitmaxCount - this.form.message.length;
         }

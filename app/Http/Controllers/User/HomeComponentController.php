@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FeedbackResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use App\Models\Admin\Slider;
+use App\Models\Users\Feedback;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -32,15 +34,17 @@ class HomeComponentController extends Controller
         }])->with('review')->with('discount',function($q){
             $q->Active()->ApiSelection()->where('counter',0);
         })->ApiSelection()->inRandomOrder()->paginate(9);
+        $feedback = Feedback::where('status',1)->with('user')->take(5)->latest()->get();
         $Category = Category::Active()->Categoryname()->get();
         $api= [
             'DisconutProducts' => ProductResource::collection($productdiscount),
             'Sliders' => $slider,
             'allProduct' => ProductResource::collection($allProduct)->response()->getData(),
             'Category' => $Category,
-
+            'feedback' => FeedbackResource::collection($feedback),
         ];
         return Api_response('HomeComponent load successfully',200,$api);
+
     }
    public function allProduct(){
 

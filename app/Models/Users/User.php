@@ -4,10 +4,9 @@ namespace App\Models\Users;
 
 use App\Mail\ResetEmail;
 use App\Models\Admin\Product;
-use App\Models\User\Review;
+use App\Models\Users\banned;
+use App\Models\Users\Review;
 use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -15,7 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable 
 {
-   use  HasFactory, Notifiable,HasRoles;
+   use  Notifiable,HasRoles;
     
     /**
      * The attributes that are mass assignable.
@@ -31,6 +30,7 @@ class User extends Authenticatable
         'birthday',
         'photo',
         'phone',
+        'ip_address',
 
         
     ];
@@ -89,6 +89,12 @@ class User extends Authenticatable
     }
     public function wishlist(){
         return $this->hasMany(Wishlist::class,'user_id');
+    }
+    public function banned(){
+        return $this->hasOne(banned::class,'user_id');
+    }
+    public function feedback(){
+        return $this->hasOne(Feedback::class,'user_id');
     }
 
 }

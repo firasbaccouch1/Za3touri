@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\FeedBacksController;
 use App\Http\Controllers\Admin\LoginContoller;
+use App\Http\Controllers\Admin\MassagesController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\ProductController;
@@ -13,11 +15,10 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TrashController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\testController;
-use App\Models\Users\Cart;
 use Illuminate\Support\Facades\Route;
-use App\Trait\CartTrait;
-use PharIo\Manifest\Email;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,17 @@ Route::middleware(['adminauth:admin'])->group(function () {
     Route::get('/Orders',[OrdersController::class,'index'])->name('admin.Orders');
     Route::get('Orders/{id}/{status}',[OrdersController::class,'update'])->name('order.update');
     Route::get('Orders/{id}',[OrdersController::class,'show'])->name('Order.show');
+    //users
+    Route::get('/Users',[UsersController::class,'index'])->name('admin.Users');
+    Route::get('/Ban-User/{ip_address}',[UsersController::class,'banUser'])->name('Ban-User');
+    Route::get('/unBan-User/{ip_address}',[UsersController::class,'unbanUser'])->name('unBan-User');
+    //massages 
+    Route::get('/Massages',[MassagesController::class,'index'])->name('admin.Massages');
+    Route::delete('/Massages/Delete/{id}',[MassagesController::class,'delete'])->name('Massages.delete');
+    //feedback
+    Route::get('/Feedback',[FeedBacksController::class,'index'])->name('admin.Feedback');
+    Route::delete('/Feedback/Delete/{id}',[FeedBacksController::class,'delete'])->name('feedback.delete');
+    Route::get('/Feedback/active/{id}',[FeedBacksController::class,'active'])->name('Feedback.active');
 
     Route::fallback(function () {
         abort(404);

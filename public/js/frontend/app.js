@@ -5660,21 +5660,28 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    Gender: function Gender(e) {
-      this.form.gender = e.target.options[e.target.options.selectedIndex].text;
-    },
     Register: function Register() {
       var _this = this;
 
       _app_frontend_Store_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].register(this.form).then(function (res) {
-        return _this.$toasted.show(res.data.msg);
-      }, this.$router.push({
-        name: 'Login'
-      }))["catch"](function (error) {
-        _this.errors = error.response.data.errors;
+        _this.$toasted.show(res.data.msg);
+
+        _this.$router.push({
+          name: 'Login'
+        });
+      })["catch"](function (err) {
+        if (err.response.data.errors) {
+          _this.errors = err.response.data.errors;
+        } else {
+          _this.errors = [];
+
+          _this.$toasted.show(err.response.data.msg, {
+            type: 'error',
+            icon: 'exclamation-triangle'
+          });
+        }
       });
-    },
-    LoginWithFacebook: function LoginWithFacebook() {}
+    }
   }
 });
 
@@ -6005,315 +6012,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -6324,11 +6022,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      baseUrl: window.location.origin,
       Sliders: [],
       ProductHasDiscount: [],
       Category: [],
       TopProduct: [],
-      LoadMorelink: ''
+      LoadMorelink: '',
+      Feedback: []
     };
   },
   methods: {
@@ -6341,6 +6041,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.Category = res.data.data.Category;
         _this.TopProduct = res.data.data.allProduct.data;
         _this.LoadMorelink = res.data.data.allProduct.links.next;
+        _this.Feedback = res.data.data.feedback;
       })["catch"](function (err) {
         console.log('problem sliders');
       });
@@ -7736,27 +7437,24 @@ __webpack_require__.r(__webpack_exports__);
     GetInTouch: function GetInTouch() {
       var _this = this;
 
-      if (this.$store.state.authenticated == true) {
-        _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/Message', this.form).then(function (res) {
-          _this.$toasted.show(res.data.msg);
-        })["catch"](function (err) {
-          if (err.response.data.errors) {
-            _this.errors = err.response.data.errors;
-          } else {
-            _this.errors = [];
+      _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/Message', this.form).then(function (res) {
+        _this.$toasted.show(res.data.msg);
 
-            _this.$toasted.show(err.response.data.msg, {
-              type: 'error',
-              icon: 'exclamation-triangle'
-            });
-          }
+        _this.$router.push({
+          name: "Home"
         });
-      } else {
-        this.$toasted.show('You Need To Login First', {
-          type: 'warning',
-          icon: 'smile-beam'
-        });
-      }
+      })["catch"](function (err) {
+        if (err.response.data.errors) {
+          _this.errors = err.response.data.errors;
+        } else {
+          _this.errors = [];
+
+          _this.$toasted.show(err.response.data.msg, {
+            type: 'error',
+            icon: 'exclamation-triangle'
+          });
+        }
+      });
     },
     liveCountDown: function liveCountDown() {
       this.totalRemainCount = this.limitmaxCount - this.form.message.length;
@@ -7777,7 +7475,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../app/frontend/Api/Api */ "./resources/js/app/frontend/Api/Api.js");
+/* harmony import */ var vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-owl-carousel */ "./node_modules/vue-owl-carousel/dist/vue-owl-carousel.js");
+/* harmony import */ var vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../app/frontend/Api/Api */ "./resources/js/app/frontend/Api/Api.js");
+//
+//
 //
 //
 //
@@ -7834,7 +7536,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    carousel: (vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0___default())
+  },
   data: function data() {
     return {
       form: {
@@ -7842,7 +7548,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       errors: [],
       limitmaxCount: 400,
-      totalRemainCount: 400
+      totalRemainCount: 400,
+      Feedback: []
     };
   },
   methods: {
@@ -7850,7 +7557,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.$store.state.authenticated == true) {
-        _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_0__["default"].post('/Feedback', this.form).then(function (res) {
+        _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_1__["default"].post('/Feedback', this.form).then(function (res) {
           _this.$toasted.show(res.data.msg);
 
           _this.$router.push({
@@ -12801,7 +12508,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       _app_frontend_Api_Api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/HeaderComponent').then(function (res) {
         _this2.Categoires = res.data.data.Category;
-      });
+      })["catch"](function (err) {});
     },
     DeleteCart: function DeleteCart(slug) {
       var _this3 = this;
@@ -12907,19 +12614,6 @@ var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
     'Accept': 'application/json'
   }
 });
-Api.defaults.withCredentials = true; // Api.interceptors.request.use(
-// 	(config) => {
-//   },);
-//   Api.interceptors.response.use(
-//     (response) => {
-//      if (response) {
-//         // response
-//      }
-//     },	(error) => {
-//       return error;
-//     }
-// );
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Api);
 
 /***/ }),
@@ -13331,7 +13025,8 @@ var routes = [//Home
   meta: {
     title: "Home"
   }
-}, //auth
+}, //banned page
+//auth
 {
   path: '/Login',
   component: Login,
@@ -18634,7 +18329,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.colorslider{\r\ncolor: #c6fff2;\n}\n.slider{\r\n    position: relative;\r\n    top: 15%;\n}\n@media screen and (max-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 500px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n@media screen and (min-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 650px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n.colorstar{\r\n    color: #cfcfcfd5;\n}\r\n\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.colorslider{\r\ncolor: #c6fff2;\n}\n.slider{\r\n    position: relative;\r\n    top: 15%;\n}\n@media screen and (max-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 500px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n@media screen and (min-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 650px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n.colorstar{\r\n    color: #cfcfcfd5;\n}.photowith{\r\n     display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 50%!important;\r\n  height: 25%!important;\r\n  width: 20%!important;\n}.text-center{\r\n     text-align: center;\n}\r\n\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -65531,11 +65226,55 @@ var render = function () {
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
-      _vm._m(3),
-      _vm._v(" "),
-      _vm._m(4),
-      _vm._v(" "),
-      _vm._m(5),
+      _vm.Feedback.length > 0
+        ? _c("div", { staticClass: "u-s-p-b-90 u-s-m-b-30" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "section__content" }, [
+              _c(
+                "div",
+                { staticClass: "container" },
+                [
+                  _vm.Feedback.length > 0
+                    ? _c(
+                        "carousel",
+                        {
+                          attrs: {
+                            items: 1,
+                            autoplay: true,
+                            nav: false,
+                            dots: false,
+                          },
+                        },
+                        _vm._l(_vm.Feedback, function (feedback) {
+                          return _c("div", [
+                            _c("img", {
+                              staticClass: "photowith",
+                              attrs: { src: feedback.photo, alt: "" },
+                            }),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "text-center" }, [
+                              _vm._v(_vm._s(feedback.name)),
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("h4", { staticClass: "text-center" }, [
+                              _vm._v(_vm._s(feedback.message)),
+                            ]),
+                          ])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                ],
+                1
+              ),
+            ]),
+          ])
+        : _vm._e(),
     ],
     1
   )
@@ -65669,551 +65408,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "u-s-p-b-60" }, [
-      _c("div", { staticClass: "section__intro u-s-m-b-46" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-12" }, [
-              _c("div", { staticClass: "section__text-wrap" }, [
-                _c(
-                  "h1",
-                  { staticClass: "section__heading u-c-secondary u-s-m-b-12" },
-                  [_vm._v("LATEST FROM BLOG")]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "section__span u-c-silver" }, [
-                  _vm._v("START YOU DAY WITH FRESH AND LATEST NEWS"),
-                ]),
+    return _c("div", { staticClass: "section__intro u-s-m-b-46" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("div", { staticClass: "section__text-wrap" }, [
+              _c(
+                "h1",
+                { staticClass: "section__heading u-c-secondary u-s-m-b-12" },
+                [_vm._v("CLIENTS FEEDBACK")]
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "section__span u-c-silver" }, [
+                _vm._v("WHAT OUR CLIENTS SAY"),
               ]),
             ]),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "section__content" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-4 col-md-6 u-s-m-b-30" }, [
-              _c("div", { staticClass: "bp-mini bp-mini--img u-h-100" }, [
-                _c("div", { staticClass: "bp-mini__thumbnail" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "aspect aspect--bg-grey aspect--1366-768 u-d-block",
-                      attrs: { href: "blog-detail.html" },
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "aspect__img",
-                        attrs: { src: "", alt: "" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "bp-mini__content" }, [
-                  _c("div", { staticClass: "bp-mini__stat" }, [
-                    _c("span", { staticClass: "bp-mini__stat-wrap" }, [
-                      _c("span", { staticClass: "bp-mini__publish-date" }, [
-                        _c("a", [_c("span", [_vm._v("25 February 2018")])]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "bp-mini__stat-wrap" }, [
-                      _c("span", { staticClass: "bp-mini__preposition" }, [
-                        _vm._v("By"),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "bp-mini__author" }, [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("Dayle")]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "bp-mini__stat" }, [
-                      _c("span", { staticClass: "bp-mini__comment" }, [
-                        _c("a", { attrs: { href: "blog-detail.html" } }, [
-                          _c("i", { staticClass: "far fa-comments u-s-m-r-4" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("8")]),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "bp-mini__category" }, [
-                    _c("a", [_vm._v("Learning")]),
-                    _vm._v(" "),
-                    _c("a", [_vm._v("News")]),
-                    _vm._v(" "),
-                    _c("a", [_vm._v("Health")]),
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "bp-mini__h1" }, [
-                    _c("a", { attrs: { href: "blog-detail.html" } }, [
-                      _vm._v("Life is an extraordinary Adventure"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "bp-mini__p" }, [
-                    _vm._v(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "blog-t-w" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Travel")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Culture")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Place")]
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4 col-md-6 u-s-m-b-30" }, [
-              _c("div", { staticClass: "bp-mini bp-mini--img u-h-100" }, [
-                _c("div", { staticClass: "bp-mini__thumbnail" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "aspect aspect--bg-grey aspect--1366-768 u-d-block",
-                      attrs: { href: "blog-detail.html" },
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "aspect__img",
-                        attrs: { src: "", alt: "" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "bp-mini__content" }, [
-                  _c("div", { staticClass: "bp-mini__stat" }, [
-                    _c("span", { staticClass: "bp-mini__stat-wrap" }, [
-                      _c("span", { staticClass: "bp-mini__publish-date" }, [
-                        _c("a", [_c("span", [_vm._v("25 February 2018")])]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "bp-mini__stat-wrap" }, [
-                      _c("span", { staticClass: "bp-mini__preposition" }, [
-                        _vm._v("By"),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "bp-mini__author" }, [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("Dayle")]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "bp-mini__stat" }, [
-                      _c("span", { staticClass: "bp-mini__comment" }, [
-                        _c("a", { attrs: { href: "blog-detail.html" } }, [
-                          _c("i", { staticClass: "far fa-comments u-s-m-r-4" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("8")]),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "bp-mini__category" }, [
-                    _c("a", [_vm._v("Learning")]),
-                    _vm._v(" "),
-                    _c("a", [_vm._v("News")]),
-                    _vm._v(" "),
-                    _c("a", [_vm._v("Health")]),
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "bp-mini__h1" }, [
-                    _c("a", { attrs: { href: "blog-detail.html" } }, [
-                      _vm._v("Wait till its open"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "bp-mini__p" }, [
-                    _vm._v(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "blog-t-w" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Travel")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Culture")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Place")]
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4 col-md-6 u-s-m-b-30" }, [
-              _c("div", { staticClass: "bp-mini bp-mini--img u-h-100" }, [
-                _c("div", { staticClass: "bp-mini__thumbnail" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "aspect aspect--bg-grey aspect--1366-768 u-d-block",
-                      attrs: { href: "blog-detail.html" },
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "aspect__img",
-                        attrs: { src: "", alt: "" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "bp-mini__content" }, [
-                  _c("div", { staticClass: "bp-mini__stat" }, [
-                    _c("span", { staticClass: "bp-mini__stat-wrap" }, [
-                      _c("span", { staticClass: "bp-mini__publish-date" }, [
-                        _c("a", [_c("span", [_vm._v("25 February 2018")])]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "bp-mini__stat-wrap" }, [
-                      _c("span", { staticClass: "bp-mini__preposition" }, [
-                        _vm._v("By"),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "bp-mini__author" }, [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("Dayle")]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "bp-mini__stat" }, [
-                      _c("span", { staticClass: "bp-mini__comment" }, [
-                        _c("a", { attrs: { href: "blog-detail.html" } }, [
-                          _c("i", { staticClass: "far fa-comments u-s-m-r-4" }),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("8")]),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "bp-mini__category" }, [
-                    _c("a", [_vm._v("Learning")]),
-                    _vm._v(" "),
-                    _c("a", [_vm._v("News")]),
-                    _vm._v(" "),
-                    _c("a", [_vm._v("Health")]),
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "bp-mini__h1" }, [
-                    _c("a", { attrs: { href: "blog-detail.html" } }, [
-                      _vm._v("Tell me difference between smoke and vape"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "bp-mini__p" }, [
-                    _vm._v(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "blog-t-w" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Travel")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Culture")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "gl-tag btn--e-transparent-hover-brand-b-2",
-                      },
-                      [_vm._v("Place")]
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "u-s-p-b-90 u-s-m-b-30" }, [
-      _c("div", { staticClass: "section__intro u-s-m-b-46" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-12" }, [
-              _c("div", { staticClass: "section__text-wrap" }, [
-                _c(
-                  "h1",
-                  { staticClass: "section__heading u-c-secondary u-s-m-b-12" },
-                  [_vm._v("CLIENTS FEEDBACK")]
-                ),
-                _vm._v(" "),
-                _c("span", { staticClass: "section__span u-c-silver" }, [
-                  _vm._v("WHAT OUR CLIENTS SAY"),
-                ]),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "section__content" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "slider-fouc" }, [
-            _c(
-              "div",
-              {
-                staticClass: "owl-carousel",
-                attrs: { id: "testimonial-slider" },
-              },
-              [
-                _c("div", { staticClass: "testimonial" }, [
-                  _c("div", { staticClass: "testimonial__img-wrap" }, [
-                    _c("img", {
-                      staticClass: "testimonial__img",
-                      attrs: { src: "", alt: "" },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "testimonial__content-wrap" }, [
-                    _c("span", { staticClass: "testimonial__double-quote" }, [
-                      _c("i", { staticClass: "fas fa-quote-right" }),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "blockquote",
-                      { staticClass: "testimonial__block-quote" },
-                      [
-                        _c("p", [
-                          _vm._v(
-                            '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."'
-                          ),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "testimonial__author" }, [
-                      _vm._v("John D. / DVNTR Inc."),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "testimonial" }, [
-                  _c("div", { staticClass: "testimonial__img-wrap" }, [
-                    _c("img", {
-                      staticClass: "testimonial__img",
-                      attrs: { src: "", alt: "" },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "testimonial__content-wrap" }, [
-                    _c("span", { staticClass: "testimonial__double-quote" }, [
-                      _c("i", { staticClass: "fas fa-quote-right" }),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "blockquote",
-                      { staticClass: "testimonial__block-quote" },
-                      [
-                        _c("p", [
-                          _vm._v(
-                            '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."'
-                          ),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "testimonial__author" }, [
-                      _vm._v("John D. / DVNTR Inc."),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "testimonial" }, [
-                  _c("div", { staticClass: "testimonial__img-wrap" }, [
-                    _c("img", {
-                      staticClass: "testimonial__img",
-                      attrs: { src: "", alt: "" },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "testimonial__content-wrap" }, [
-                    _c("span", { staticClass: "testimonial__double-quote" }, [
-                      _c("i", { staticClass: "fas fa-quote-right" }),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "blockquote",
-                      { staticClass: "testimonial__block-quote" },
-                      [
-                        _c("p", [
-                          _vm._v(
-                            '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."'
-                          ),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "testimonial__author" }, [
-                      _vm._v("John D. / DVNTR Inc."),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "testimonial" }, [
-                  _c("div", { staticClass: "testimonial__img-wrap" }, [
-                    _c("img", {
-                      staticClass: "testimonial__img",
-                      attrs: { src: "", alt: "" },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "testimonial__content-wrap" }, [
-                    _c("span", { staticClass: "testimonial__double-quote" }, [
-                      _c("i", { staticClass: "fas fa-quote-right" }),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "blockquote",
-                      { staticClass: "testimonial__block-quote" },
-                      [
-                        _c("p", [
-                          _vm._v(
-                            '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."'
-                          ),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "testimonial__author" }, [
-                      _vm._v("John D. / DVNTR Inc."),
-                    ]),
-                  ]),
-                ]),
-              ]
-            ),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "u-s-p-b-60" }, [
-      _c("div", { staticClass: "section__content" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "slider-fouc" }, [
-            _c(
-              "div",
-              {
-                staticClass: "owl-carousel",
-                attrs: { id: "brand-slider", "data-item": "5" },
-              },
-              [
-                _c("div", { staticClass: "brand-slide" }, [
-                  _c("a", { attrs: { href: "shop-side-version-2.html" } }, [
-                    _c("img", { attrs: { src: "", alt: "" } }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "brand-slide" }, [
-                  _c("a", { attrs: { href: "shop-side-version-2.html" } }, [
-                    _c("img", { attrs: { src: "", alt: "" } }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "brand-slide" }, [
-                  _c("a", { attrs: { href: "shop-side-version-2.html" } }, [
-                    _c("img", { attrs: { src: "", alt: "" } }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "brand-slide" }, [
-                  _c("a", { attrs: { href: "shop-side-version-2.html" } }, [
-                    _c("img", { attrs: { src: "", alt: "" } }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "brand-slide" }, [
-                  _c("a", { attrs: { href: "shop-side-version-2.html" } }, [
-                    _c("img", { attrs: { src: "", alt: "" } }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "brand-slide" }, [
-                  _c("a", { attrs: { href: "shop-side-version-2.html" } }, [
-                    _c("img", { attrs: { src: "", alt: "" } }),
-                  ]),
-                ]),
-              ]
-            ),
           ]),
         ]),
       ]),
@@ -68395,7 +67604,30 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "app-content" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "u-s-p-y-60" }, [
+      _c("div", { staticClass: "section__content" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "breadcrumb" }, [
+            _c("div", { staticClass: "breadcrumb__wrap" }, [
+              _c("ul", { staticClass: "breadcrumb__list" }, [
+                _c(
+                  "li",
+                  { staticClass: "has-separator" },
+                  [
+                    _c("router-link", { attrs: { to: { name: "Home" } } }, [
+                      _vm._v("Home"),
+                    ]),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
@@ -68610,26 +67842,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "u-s-p-y-60" }, [
-      _c("div", { staticClass: "section__content" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "breadcrumb" }, [
-            _c("div", { staticClass: "breadcrumb__wrap" }, [
-              _c("ul", { staticClass: "breadcrumb__list" }, [
-                _c("li", { staticClass: "has-separator" }, [
-                  _c("a", { attrs: { href: "index.html" } }, [_vm._v("Home")]),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "is-marked" }, [
-                  _c("a", { attrs: { href: "contact.html" } }, [
-                    _vm._v("Contact"),
-                  ]),
-                ]),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]),
+    return _c("li", { staticClass: "is-marked" }, [
+      _c("a", [_vm._v("Contact")]),
     ])
   },
   function () {
@@ -68855,6 +68069,9 @@ var render = function () {
                   ]
                 ),
               ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
             ]),
           ]),
         ]),

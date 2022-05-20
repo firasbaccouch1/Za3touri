@@ -349,7 +349,9 @@ export default {
         },HeaderComponent(){
                     Api.get('/HeaderComponent').then(res => {
                     this.Categoires = res.data.data.Category
-            })  
+            }).catch(err => {
+
+            }) 
         },DeleteCart(slug){
            Api.get('/remove-itemtocart/'+slug).then(res=>{
                  this.$store.commit('SET_CART',res.data.data)
@@ -383,9 +385,8 @@ export default {
         Auth.userwithCart().then(res=> {
         this.$store.commit('SET_AUTHENTICATED',true)
         this.$store.commit('SET_USER',res.data.data.user)
-        this.$store.commit('SET_CART',res.data.data.Cart)
-        
-        }) 
+        this.$store.commit('SET_CART',res.data.data.Cart)     
+        })
      }
     
     },

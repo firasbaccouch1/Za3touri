@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SiteSettingsRequest;
 use App\Models\Admin\GeneralSettings;
 use App\Models\Admin\Setting;
+use App\Models\Users\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -151,5 +152,16 @@ class SettingController extends Controller
         } catch (\Throwable $th) {
            return 'somthing went wrong';
         }
+    }
+    public function banned(){
+        $users= User::where('ip_address',request()->ip())->with('banned')->get();
+        foreach ($users as  $user) {
+          if ($user->banned != null) {
+            return view('admin.pages.settings.Banned');
+          
+          }
+        }
+         return redirect('/');
+       
     }
 }

@@ -80,5 +80,7 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'settings'=>\App\Http\Middleware\SiteSettings::class,
         'checkauth'=>\App\Http\Middleware\CheckAuth::class,
+        'banned'=>\App\Http\Middleware\BannedMiddleware::class,
+        
     ];
 }

@@ -50,6 +50,7 @@ let ReturnsCancellations = require('./components/Frontend/User/MyReturns/MyRetur
 
 
 
+
  
 
 
@@ -59,6 +60,9 @@ let ReturnsCancellations = require('./components/Frontend/User/MyReturns/MyRetur
  const routes=  [
     //Home
     { path: '/',component:Home ,name:'Home', meta:{title:`Home`}},
+    //banned page
+    
+   
     //auth
     { path: '/Login',component:Login,name:'Login', meta:{title:`Login`}},
     { path: '/Register',component:Register,name:'Register',meta:{title:`Register`}},
