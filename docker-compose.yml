@@ -38,7 +38,7 @@ services:
     ports: 
       - "80:80"
     volumes:
-      - "./:var/www/html" 
+      - "./:/var/www/html" 
     networks:
       - laravel
 
