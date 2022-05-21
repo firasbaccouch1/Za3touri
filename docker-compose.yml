@@ -20,7 +20,6 @@ services:
       - "3306:3306"
     volumes: 
       - "./mysql:/var/lib/mysql"
-    restart: unless_stopped
     tty: true
     environment:
       DB_DATABASE: za3touri
