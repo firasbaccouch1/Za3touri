@@ -123,7 +123,7 @@
                             <li data-tooltip="tooltip" data-placement="left" title="Contact">
 
                                 <a href="tel:+0900901904"><i class="fas fa-phone-volume"></i></a></li>
-                            <li data-tooltip="tooltip" data-placement="left" title="Mail">
+                            <li data-tooltip="tooltip"  data-placement="left" title="Mail">
 
                                 <a><i class="far fa-envelope"></i></a></li>
                         </ul>
