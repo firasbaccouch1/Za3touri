@@ -1,6 +1,11 @@
 version: "3.3"
 networks:
-    laravel:
+  laravel:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
 
 services: 
   nginx:
@@ -16,16 +21,19 @@ services:
   mysql:
     image: mysql:8
     container_name: laravel_mysql
+    restart: unless-stoppe
     ports: 
       - "3306:3306"
     volumes: 
+      - dbdata:/var/lib/mysql/
+      - ./docker/mysql.cnf:/etc/mysql/my.cnf
       - "./mysql:/var/lib/mysql"
     tty: true
     environment:
-      DB_DATABASE: za3touri
-      DB_USERNAME: user
-      DB_PASSWORD: root
+      MYSQL_DATABASE: za3touri
+      MYSQL_USER: user
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
       SERVICE_TAG: dev
       SERVICE_NAME: mysql
     networks:
@@ -38,7 +46,7 @@ services:
     ports: 
       - "80:80"
     volumes:
-      - "./:/var/www/html" 
+      - "./docker/php.sh:/var/www/html" 
     networks:
       - laravel
 
