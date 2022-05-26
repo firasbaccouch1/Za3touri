@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function index(AdminDataTable $DataTable)
     {
-        return $DataTable->render('admin/pages/admins/admins');
+        return $DataTable->render('admin/pages/admins/Admins');
     }
 
     /**

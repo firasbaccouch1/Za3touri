@@ -26,7 +26,7 @@ class SliderController extends Controller
      */
     public function index(SliderDataTable $datatables)
     {
-        return $datatables->render('admin.pages.sliders.sliders');
+        return $datatables->render('admin.pages.sliders.Sliders');
     }
 
     /**

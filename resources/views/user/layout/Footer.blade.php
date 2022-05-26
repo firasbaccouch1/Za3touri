@@ -39,7 +39,11 @@
                             <a >Za3touri</a>
 
                             <span>All Right Reserved</span></div>
-                            <span></span>                        
+                            <span></span>  
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;                      
                             <div class="lower-footer__payment">
                             <ul>
                                 <li><i class="fab fa-cc-stripe"></i></li>

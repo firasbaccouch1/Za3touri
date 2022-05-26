@@ -16,7 +16,6 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TrashController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\testController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -108,9 +107,7 @@ Route::middleware(['adminauth:admin'])->group(function () {
     });
 
     
-    Route::get('/firas',[testController::class,'test']);
-
-});
+  });
 
 
 

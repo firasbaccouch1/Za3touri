@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Users\feedback;
+use App\Models\Users\Feedback;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -58,7 +58,7 @@ class feedbacksDataTable extends DataTable
      * @param \App\Models\Users\feedback $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(feedback $model)
+    public function query(Feedback $model)
     {
         return $model->newQuery()->with('user');
     }

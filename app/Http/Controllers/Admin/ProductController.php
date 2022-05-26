@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function index(ProductDataTable $datatables)
     {
-       return $datatables->render('admin.pages.product.products');
+       return $datatables->render('admin.pages.product.Products');
     }
 
     /**
