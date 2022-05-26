@@ -16,7 +16,7 @@ class SliderSeeder extends Seeder
     public function run()
     {
         Slider::Create([
-            'title_en'=> 'the best pc you will find it here',
+            'title_en'=> 'The best pc you will find it here',
             'title_ar'=>'افضل الحواسيب تجدها هنا',
             'short_description_en'=> Str::random(60),
             'short_description_ar'=>Str::random(60),
@@ -24,7 +24,7 @@ class SliderSeeder extends Seeder
             'category_id'=>3,
         ]);
         Slider::Create([
-            'title_en'=> 'the best phones you will find it here',
+            'title_en'=> 'The best phones you will find it here',
             'title_ar'=>'افضل الهواتف تجدها هنا',
             'short_description_en'=> Str::random(60),
             'short_description_ar'=>Str::random(60),
