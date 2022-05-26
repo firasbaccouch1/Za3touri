@@ -57,14 +57,8 @@
             <br><br>
             <div class="row">
                 <div class="col-lg-4 u-s-m-b-30">
-                    <h2 class=" u-s-m-b-8">review_status</h2>
-
-                    @if ($product->review_status == NULL ) 
-                    <span class="badge badge-pill badge-danger"> <b>No Reviews</b></span>
-                    @else
-                        <span class="badge badge-pill badge-danger"> testsssssssssssss</span>
-                    
-                    @endif
+                    <h2 class=" u-s-m-b-8">review count</h2>
+                        <span class="badge badge-pill badge-danger">{{ $product->review->count() }}</span>                      
                 </div>
                 <div class="col-lg-4 u-s-m-b-30">
                     <h2 class=" u-s-m-b-8" >Discount</h2>

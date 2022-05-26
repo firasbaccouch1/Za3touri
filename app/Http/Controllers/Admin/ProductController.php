@@ -120,7 +120,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-      $product =  Product::withoutGlobalScope(ProductScope::class)->where('id',$id)->with('multi_img')->first();
+      $product =  Product::withoutGlobalScope(ProductScope::class)->where('id',$id)->with('multi_img','review')->first();
         if ($product) {
             $categories = Category::Categoryname()->get();
             return view('admin.pages.product.EditProduct',compact('product','categories'));
