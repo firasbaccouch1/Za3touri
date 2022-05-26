@@ -2,26 +2,27 @@
    <div class="app-content">
 
             <!--====== Primary Slider ======-->
-
+                   
                     <carousel v-if="Sliders.length >0"  :items="1" :autoplay="true" :nav="false" :dots="false" >
                         <div  v-for="Slider in Sliders"  :key='Slider.index' v-bind:style="{ 'background-image': 'url(' + Slider.photo + ')' }" class="img_slider" >
                             <div class="container slider">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="slider-content slider-content--animation">
+                                    <div class="slider-content slider-content--animation ">
 
 
-                                        <span class="content-span-2 colorslider">{{ Slider.title }}</span>
+                                        <span class="content-span-2 colorslider maxwith">{{ Slider.title }}</span>
                                         <br>
-                                        <span class="content-span-3 colorslider">{{ Slider.short_description }}</span>
+                                        <span class="content-span-3 colorslider slidermaxwith">{{ Slider.short_description }}</span>
                                         <br><br>
-                                        <router-link class="shop-now-link btn--e-brand" :to='{name:"Category",params:{slug:Slider.category.slug}}'>SHOP NOW</router-link></div>
+                                        <router-link class="shop-now-link btn--e-brand maxwithbutton" :to='{name:"Category",params:{slug:Slider.category.slug}}'>SHOP NOW</router-link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         </div>
-
                     </carousel>
+                  
             <!--====== End - Primary Slider ======-->
 
 
@@ -420,7 +421,38 @@ color: #c6fff2;
     background-size: 100% 100%;
 
 }
+
 }
+@media screen and (max-width: 700px) {
+.img_slider{
+    width:100%;
+    height: 400px;
+    background-position: center top;
+    background-size: 100% 100%;
+
+}
+.colorslider{
+    font-size: 13px;
+
+}
+.maxwithbutton{
+padding: 10px 15px 10px 15px;
+
+}
+.maxwith{
+    font-size: 24px;
+}
+
+}
+@media screen and (max-width: 400px) {
+.slidermaxwith{
+    word-wrap: break-word;
+max-width: 400px !important;
+
+}
+
+}
+
 .colorstar{
     color: #cfcfcfd5;
 }.photowith{

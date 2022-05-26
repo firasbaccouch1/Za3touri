@@ -80,7 +80,7 @@ You can also contact me via Facebook or the linkedin which you can find below</p
                 <div class="section__content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4  u-s-m-b-30"></div>
+                            <div class="col-lg-2 col-md-2  u-s-m-b-30"></div>
                             <div class="col-lg-4 col-md-4  u-s-m-b-30">
                                 <div class="team-member u-h-100">
                                     <div class="team-member__wrap">
@@ -110,7 +110,37 @@ You can also contact me via Facebook or the linkedin which you can find below</p
                                         <span class="team-member__job-title">Full Stack Developer</span></div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4  u-s-m-b-30"></div>
+                            <div class="col-lg-4 col-md-4  u-s-m-b-30">
+                                <div class="team-member u-h-100">
+                                    <div class="team-member__wrap">
+                                        <div class="aspect aspect--bg-grey-fb aspect--square">
+
+                                            <img class="aspect__img team-member__img" v-lazy="baseURL+'/frontend/images/developer/developer1.jpg'" alt=""></div>
+                                        <div class="team-member__social-wrap">
+                                            <ul class="team-member__social-list">
+
+                                                <li>
+
+                                                    <a  target=”_blank” href='https://www.facebook.com/wassim.justin.5' class="s-fb--bgcolor-hover" ><i class="fab fa-facebook-f"></i></a></li>
+                                                <li>
+
+                                                    <a  target=”_blank” href="https://www.instagram.com/wassim_bbh/" class="s-insta--bgcolor-hover" ><i class="fab fa-instagram"></i></a></li>
+                                                <li>
+
+                                                    <a  target=”_blank” href="https://www.linkedin.com/in/wassim-laaouini-072146223/" class="s-linked--bgcolor-hover" ><i class="fab fa-linkedin"></i></a></li>
+                                                   
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="team-member__info">
+
+                                        <span class="team-member__name">Wassim Laaouini</span>
+
+                                        <span class="team-member__job-title">Full Stack Developer</span></div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-2 col-md-2  u-s-m-b-30"></div>
                         </div>
                     </div>
                 </div>

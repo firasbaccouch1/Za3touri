@@ -6012,6 +6012,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6168,6 +6169,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -18329,7 +18360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.colorslider{\r\ncolor: #c6fff2;\n}\n.slider{\r\n    position: relative;\r\n    top: 15%;\n}\n@media screen and (max-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 500px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n@media screen and (min-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 650px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n.colorstar{\r\n    color: #cfcfcfd5;\n}.photowith{\r\n     display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 50%!important;\r\n  height: 25%!important;\r\n  width: 20%!important;\n}.text-center{\r\n     text-align: center;\n}\r\n\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.colorslider{\r\ncolor: #c6fff2;\n}\n.slider{\r\n    position: relative;\r\n    top: 15%;\n}\n@media screen and (max-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 500px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n@media screen and (min-width: 1170px) {\n.img_slider{\r\n    width:100%;\r\n    height: 650px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n}\n@media screen and (max-width: 700px) {\n.img_slider{\r\n    width:100%;\r\n    height: 400px;\r\n    background-position: center top;\r\n    background-size: 100% 100%;\n}\n.colorslider{\r\n    font-size: 13px;\n}\n.maxwithbutton{\r\npadding: 10px 15px 10px 15px;\n}\n.maxwith{\r\n    font-size: 24px;\n}\n}\n@media screen and (max-width: 400px) {\n.slidermaxwith{\r\n    word-wrap: break-word;\r\nmax-width: 400px !important;\n}\n}\n.colorstar{\r\n    color: #cfcfcfd5;\n}.photowith{\r\n     display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 50%!important;\r\n  height: 25%!important;\r\n  width: 20%!important;\n}.text-center{\r\n     text-align: center;\n}\r\n\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -64460,12 +64491,15 @@ var render = function () {
                           "div",
                           {
                             staticClass:
-                              "slider-content slider-content--animation",
+                              "slider-content slider-content--animation ",
                           },
                           [
                             _c(
                               "span",
-                              { staticClass: "content-span-2 colorslider" },
+                              {
+                                staticClass:
+                                  "content-span-2 colorslider maxwith",
+                              },
                               [_vm._v(_vm._s(Slider.title))]
                             ),
                             _vm._v(" "),
@@ -64473,7 +64507,10 @@ var render = function () {
                             _vm._v(" "),
                             _c(
                               "span",
-                              { staticClass: "content-span-3 colorslider" },
+                              {
+                                staticClass:
+                                  "content-span-3 colorslider slidermaxwith",
+                              },
                               [_vm._v(_vm._s(Slider.short_description))]
                             ),
                             _vm._v(" "),
@@ -64483,7 +64520,8 @@ var render = function () {
                             _c(
                               "router-link",
                               {
-                                staticClass: "shop-now-link btn--e-brand",
+                                staticClass:
+                                  "shop-now-link btn--e-brand maxwithbutton",
                                 attrs: {
                                   to: {
                                     name: "Category",
@@ -65559,7 +65597,7 @@ var render = function () {
       _c("div", { staticClass: "section__content" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-4 col-md-4  u-s-m-b-30" }),
+            _c("div", { staticClass: "col-lg-2 col-md-2  u-s-m-b-30" }),
             _vm._v(" "),
             _c("div", { staticClass: "col-lg-4 col-md-4  u-s-m-b-30" }, [
               _c("div", { staticClass: "team-member u-h-100" }, [
@@ -65593,7 +65631,39 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4 col-md-4  u-s-m-b-30" }),
+            _c("div", { staticClass: "col-lg-4 col-md-4  u-s-m-b-30" }, [
+              _c("div", { staticClass: "team-member u-h-100" }, [
+                _c("div", { staticClass: "team-member__wrap" }, [
+                  _c(
+                    "div",
+                    { staticClass: "aspect aspect--bg-grey-fb aspect--square" },
+                    [
+                      _c("img", {
+                        directives: [
+                          {
+                            name: "lazy",
+                            rawName: "v-lazy",
+                            value:
+                              _vm.baseURL +
+                              "/frontend/images/developer/developer1.jpg",
+                            expression:
+                              "baseURL+'/frontend/images/developer/developer1.jpg'",
+                          },
+                        ],
+                        staticClass: "aspect__img team-member__img",
+                        attrs: { alt: "" },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(5),
+                ]),
+                _vm._v(" "),
+                _vm._m(6),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-2 col-md-2  u-s-m-b-30" }),
           ]),
         ]),
       ]),
@@ -65718,6 +65788,70 @@ var staticRenderFns = [
     return _c("div", { staticClass: "team-member__info" }, [
       _c("span", { staticClass: "team-member__name" }, [
         _vm._v("Firas Baccouch"),
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "team-member__job-title" }, [
+        _vm._v("Full Stack Developer"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "team-member__social-wrap" }, [
+      _c("ul", { staticClass: "team-member__social-list" }, [
+        _c("li", [
+          _c(
+            "a",
+            {
+              staticClass: "s-fb--bgcolor-hover",
+              attrs: {
+                target: "”_blank”",
+                href: "https://www.facebook.com/wassim.justin.5",
+              },
+            },
+            [_c("i", { staticClass: "fab fa-facebook-f" })]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              staticClass: "s-insta--bgcolor-hover",
+              attrs: {
+                target: "”_blank”",
+                href: "https://www.instagram.com/wassim_bbh/",
+              },
+            },
+            [_c("i", { staticClass: "fab fa-instagram" })]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              staticClass: "s-linked--bgcolor-hover",
+              attrs: {
+                target: "”_blank”",
+                href: "https://www.linkedin.com/in/wassim-laaouini-072146223/",
+              },
+            },
+            [_c("i", { staticClass: "fab fa-linkedin" })]
+          ),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "team-member__info" }, [
+      _c("span", { staticClass: "team-member__name" }, [
+        _vm._v("Wassim Laaouini"),
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "team-member__job-title" }, [

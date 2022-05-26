@@ -6173,7 +6173,9 @@ input::-ms-clear {
 .content-span-3 {
   display: block;
   font-size: 0.875rem;
-  margin-bottom: 8px; }
+  margin-bottom: 8px; 
+  
+}
 
 .content-span-4 {
   display: block;
