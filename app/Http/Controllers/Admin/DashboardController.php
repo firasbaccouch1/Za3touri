@@ -67,12 +67,12 @@ class DashboardController extends Controller
             $photo = $request->file('photo');
             if ($admin->photo == 'backend/img/Admins/defualt/defualt.webp') {
                 $admin->update([
-                    'photo' => save_photo($photo,$location,[720,720])
+                    'photo' => save_photo($photo,$location,[240,200])
                 ]);
         
             }else{
                 $admin->update([
-                    'photo' => save_photo($photo,$location,[720,720],$old_photo)
+                    'photo' => save_photo($photo,$location,[240,200],$old_photo)
                 ]);
             }
         return redirect()->back()->with(notify_messages('Photo Changed Successfully','success'));    
