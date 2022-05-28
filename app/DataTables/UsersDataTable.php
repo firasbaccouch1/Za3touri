@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Users\User;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
