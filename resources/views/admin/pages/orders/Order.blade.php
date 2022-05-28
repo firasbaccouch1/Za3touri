@@ -67,6 +67,7 @@
             <hr>
             <br>
             <br>
+            @if ($order->payment != null)
             <div class="row">
                 <div class="col-lg-12 u-s-m-b-30">
                     <h2 class=" u-s-m-b-8" >Payment gateway </h2>
@@ -76,7 +77,7 @@
             </div> 
             <br>
             <br>  
-            <div class="row">
+            <div  class="row">
                 <div class="col-lg-4 u-s-m-b-30">
                     <h2 class=" u-s-m-b-8">Country</h2>
                      <span class="dash__text"><b>{{ $order->payment->country}}</b></span>
@@ -90,9 +91,11 @@
                      <span style="color: rgb(207, 158, 66)"  class="dash__text"><b>{{ $order->payment->id_address }}</b></span>
                 </div>
             </div>
+         
             <hr>
             <br>
             <br>
+            @endif
             <div class="row">
                 <div class="col-lg-12 u-s-m-b-30">
                     <h2 class=" u-s-m-b-8" >Products </h2>
