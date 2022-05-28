@@ -6,6 +6,7 @@ use App\DataTables\RolesDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RolesRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -15,6 +16,7 @@ class RoleController extends Controller
 
   public function __construct()
   {
+   
     $this->middleware(['adminpermission:guest'])->only('index');
     $this->middleware(['adminpermission:owner'])->only('create','store');
     $this->middleware(['adminpermission:owner'])->only('update','edit');
@@ -38,6 +40,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+      
       $permissions =  Permission::where('guard_name','admin')->latest()->get();
         return view('admin.pages.roles.CreateRole',compact('permissions'));
     }
@@ -84,7 +87,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-
+      
             $role = Role::findOrFail($id);
          $permissions = Permission::get();
           $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)

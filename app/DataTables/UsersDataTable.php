@@ -5,9 +5,8 @@ namespace App\DataTables;
 use App\Models\Users\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Str;
 
 class UsersDataTable extends DataTable
 {
@@ -34,6 +33,13 @@ class UsersDataTable extends DataTable
                     return '<span class="badge badge-pill badge-success">Active</span>';
                 }
             })->escapeColumns('status')
+            ->editColumn('email', function($query) {
+                if (Auth::guard('admin')->user()->hasPermissionTo('admin')) {
+                  return $query->email;
+                }else{
+                    return Str::mask($query->email,'*',0);
+                }
+            })->escapeColumns('email')
             ->editColumn('ban-User', function($query) {
                 if($query->banned == null )
                 return '<a title="ban user" href="'.route('Ban-User',$query->ip_address).'"><span class="btn btn-danger" ><i class="fas fa-user-alt-slash"></i></span></a>';
@@ -84,7 +90,7 @@ class UsersDataTable extends DataTable
         return [
             
             Column::computed('name')->class('text-center'),
-            Column::make('email')->class('text-center'),
+            Column::computed('email')->class('text-center'),
             Column::computed('status')->class('text-center'),
             Column::make('updated_at')->class('text-center'),
             Column::computed('ban-User')->class('text-center'),

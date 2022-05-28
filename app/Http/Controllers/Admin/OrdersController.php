@@ -9,11 +9,16 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
+ 
+    public function __construct()
+    {
+        $this->middleware(['adminpermission:update'])->only('update');
+        $this->middleware(['adminpermission:update'])->only('show');
+        $this->middleware(['adminpermission:guest'])->only('index');
+    }
     public function index(OrdersDatatables $datatables){
 
         return $datatables->render('admin.pages.orders.Orders');
-        $this->middleware(['adminpermission:update'])->only('update');
-        $this->middleware(['adminpermission:guest'])->only('index');
     }
     public function update($id,$status){
        $order= Orders::findOrFail($id);
