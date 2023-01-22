@@ -17,11 +17,11 @@ We hope you enjoy using our Laravel e-commerce site, and we welcome any feedback
 
 #To run the project on your local machine:
 
-clone the repository
-run composer install to install the dependencies
-create a .env file and set your database configuration
-run php artisan migrate --seed to create the database tables
-run php artisan serve to start the local server
-run npm install and npm run watch to compile the front-end assets.
-run php artisan websocket:serve to run the real-time notification
-Thank you for considering our project!
+clone the repository <br>
+run composer install to install the dependencies<br>
+create a .env file and set your database configuration<br>
+run php artisan migrate --seed to create the database tables<br>
+run php artisan serve to start the local server<br>
+run npm install and npm run watch to compile the front-end assets.<br>
+run php artisan websocket:serve to run the real-time notification<br>
+Thank you for considering our project!<br>
